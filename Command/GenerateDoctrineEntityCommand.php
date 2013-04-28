@@ -273,13 +273,13 @@ EOT
             $defaultType = 'string';
 
             // try to guess the type by the column name prefix/suffix
-            if (substr($columnName, -3) == '_at') {
+            if (substr($columnName, -3) == '_at' || preg_match('/[^A-Z]At$/', $columnName)) {
                 $defaultType = 'datetime';
-            } elseif (substr($columnName, -3) == '_id') {
+            } elseif (substr($columnName, -3) == '_id' || preg_match('/[^A-Z]Id$/', $columnName)) {
                 $defaultType = 'integer';
-            } elseif (substr($columnName, 0, 3) == 'is_') {
+            } elseif (substr($columnName, 0, 3) == 'is_' || preg_match('/^is[A-Z,0-9]/', $columnName)) {
                 $defaultType = 'boolean';
-            } elseif (substr($columnName, 0, 4) == 'has_') {
+            } elseif (substr($columnName, 0, 4) == 'has_' || preg_match('/^has[A-Z,0-9]/', $columnName)) {
                 $defaultType = 'boolean';
             }
 
