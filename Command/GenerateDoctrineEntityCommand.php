@@ -266,9 +266,9 @@ EOT
 
             $defaultType = 'string';
 
-            if (substr($name, -3) == '_at') {
+            if (substr($name, -3) == '_at' || preg_match('/[^A-Z]At$/', $name)) {
                 $defaultType = 'datetime';
-            } elseif (substr($name, -3) == '_id') {
+            } elseif (substr($name, -3) == '_id' || preg_match('/[^A-Z]Id$/', $name)) {
                 $defaultType = 'integer';
             }
 
